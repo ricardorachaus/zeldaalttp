@@ -13,10 +13,21 @@ public class InputHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        HandleInput();
+	}
+
+    /// <summary>
+    /// Handles the input.
+    /// </summary>
+    void HandleInput() {
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
 
         var moveCommand = new MoveCommand(horizontalInput, verticalInput);
         moveCommand.Execute(player);
-	}
+
+        if (Input.GetKeyDown("z")) {
+            player.Attack();
+        }
+    }
 }

@@ -27,6 +27,6 @@ public class MoveCommand : Command {
     /// <returns>Void.</returns>
     /// <param name="player">Player.</param>
     public override void Execute(Player player) {
-        player.Walk(velocity, !velocity.Equals(Vector2.zero));
+        player.Walk(velocity);
     }
 }

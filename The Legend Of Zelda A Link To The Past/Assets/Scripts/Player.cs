@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    Rigidbody2D rb;
-    Animator anim;
+    private Rigidbody2D rb;
+    private Animator anim;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
 
-    public void Walk(Vector2 velocity, bool isMoving) {
-        print(velocity);
+
+    // Command Methods
+
+
+    /// <summary>
+    /// Walk player with velocity.
+    /// </summary>
+    /// <returns>Void.</returns>
+    /// <param name="velocity">Velocity of the player.</param>
+    public void Walk(Vector2 velocity) {
         rb.velocity = velocity;
         anim.SetFloat("FaceX", velocity.x);
         anim.SetFloat("FaceY", velocity.y);
-        anim.SetBool("isMoving", isMoving);
+        anim.SetBool("isMoving", !velocity.Equals(Vector2.zero));
+    }
+
+    /// <summary>
+    /// Executes the attack.
+    /// </summary>
+    public void Attack() {
+        anim.SetTrigger("Attacking");
     }
 
 }
