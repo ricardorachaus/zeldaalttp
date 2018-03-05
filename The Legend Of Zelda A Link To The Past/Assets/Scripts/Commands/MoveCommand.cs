@@ -22,6 +22,16 @@ public class MoveCommand : Command {
     }
 
     /// <summary>
+    /// Sets the velocity.
+    /// </summary>
+    /// <param name="x">The x coordinate.</param>
+    /// <param name="y">The y coordinate.</param>
+    public void SetVelocity(float x, float y) {
+        velocity.x = x;
+        velocity.y = y;
+    }
+
+    /// <summary>
     /// Execute movement for the specified player.
     /// </summary>
     /// <returns>Void.</returns>

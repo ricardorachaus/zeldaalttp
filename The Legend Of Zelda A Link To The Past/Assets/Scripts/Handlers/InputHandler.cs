@@ -6,9 +6,11 @@ public class InputHandler : MonoBehaviour {
 
     [SerializeField] Player player;
 
+    private MoveCommand moveCommand;
+
 	// Use this for initialization
 	void Start () {
-		
+        moveCommand = new MoveCommand(0, 0);
 	}
 	
 	// Update is called once per frame
@@ -23,7 +25,7 @@ public class InputHandler : MonoBehaviour {
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
 
-        var moveCommand = new MoveCommand(horizontalInput, verticalInput);
+        moveCommand.SetVelocity(horizontalInput, verticalInput);
         moveCommand.Execute(player);
 
         if (Input.GetKeyDown("z")) {
