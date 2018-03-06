@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    private bool isInContact;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour {
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        isInContact = false;
 	}
 
 
@@ -30,10 +32,33 @@ public class Player : MonoBehaviour {
     }
 
     /// <summary>
-    /// Executes the attack.
+    /// Executes the Attack.
     /// </summary>
-    public void Attack() {
+    /// <returns>Void.</returns>
+    /// <param name="velocity">Velocity of the player.</param>
+    public void Attack(Vector2 velocity) {
+        anim.SetFloat("FaceX", velocity.x);
+        anim.SetFloat("FaceY", velocity.y);
         anim.SetTrigger("Attacking");
     }
 
+
+    /// <summary>
+    /// Grab a object.
+    /// </summary>
+    /// <returns>Void.</returns>
+    /// <param name="velocity">Velocity of the player.</param>
+    public void Grab(Vector2 velocity) {
+        if (isInContact) {
+            print("Carrying");
+        }
+
+        anim.SetFloat("FaceX", velocity.x);
+        anim.SetFloat("FaceY", velocity.y);
+        anim.SetBool("isCarrying", isInContact);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        //if (collision.o)
+    }
 }

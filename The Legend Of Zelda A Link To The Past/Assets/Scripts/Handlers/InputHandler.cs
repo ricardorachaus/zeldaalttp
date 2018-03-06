@@ -6,7 +6,7 @@ public class InputHandler : MonoBehaviour {
 
     [SerializeField] Player player;
 
-    private MoveCommand moveCommand;
+    private Command moveCommand;
 
 	// Use this for initialization
 	void Start () {
@@ -25,11 +25,12 @@ public class InputHandler : MonoBehaviour {
         var horizontalInput = Input.GetAxis("Horizontal");
         var verticalInput = Input.GetAxis("Vertical");
 
-        moveCommand.SetVelocity(horizontalInput, verticalInput);
+        (moveCommand as MoveCommand).SetVelocity(horizontalInput, verticalInput);
         moveCommand.Execute(player);
 
         if (Input.GetKeyDown("z")) {
-            player.Attack();
+            //player.Attack();
+            print("Attacked!");
         }
     }
 }
